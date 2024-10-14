@@ -1,10 +1,3 @@
-/*================== IMPORTACIONES (INICIO) =================*/
-import clases from './Clases.js';
-const { Artista, Exposicion, Visita } = clases;
-/*================== IMPORTACIONES (FINAL) =================*/
-
-/*===============================================================*/
-
 /*================== CAMBIO DE COLOR (INICIO) =================*/
 
 let bgActual = ["primario", "secundario", "terciario"];
@@ -126,7 +119,7 @@ function validarRegistroArtista(nombre, edad, estilo) {
     }
 }
 
-function registro() {
+function registroArtista() {
     let nombre = document.getElementById('nombreArtista');
     let edad = document.getElementById('edadArtista');
     let estilo = document.getElementById('estiloArstista');
@@ -143,7 +136,7 @@ function registro() {
 
 document.getElementById('btnRegistroArtista').onclick = (event) => {
     event.preventDefault();
-    registro();
+    registroArtista();
 }
 
 /*================== REGISTRO ARTISTA (FINAL) =================*/
