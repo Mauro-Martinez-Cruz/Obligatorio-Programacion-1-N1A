@@ -1,7 +1,6 @@
 /*================== IMPORTACIONES (INICIO) =================*/
-import Artista from './Clases.js';
-import Exposicion from './Clases.js';
-import Visita from './Clases.js';
+import clases from './Clases.js';
+const { Artista, Exposicion, Visita } = clases;
 /*================== IMPORTACIONES (FINAL) =================*/
 
 /*===============================================================*/
@@ -54,20 +53,20 @@ let radios = ['califMuyMal', 'califMal', 'califNormal', 'califBien', 'califMuyBi
 let imgCalificacion = "CaraMuyBien.JPG";
 
 function check(check, arr) {
-    for(let i = 0; i < arr.length; i++){
+    for (let i = 0; i < arr.length; i++) {
         document.getElementById(`${arr[i]}Lbl`).classList.remove('imgCheck');
     }
     document.getElementById(`${check}Lbl`).classList.add('imgCheck');
 
-    if(check == "califMuyBien"){
+    if (check == "califMuyBien") {
         imgCalificacion = "CaraMuyBien.JPG";
-    }else if(check == "califBien"){
+    } else if (check == "califBien") {
         imgCalificacion = "CaraBien.JPG";
-    }else if(check == "califNormal"){
+    } else if (check == "califNormal") {
         imgCalificacion = "CaraNormal.JPG";
-    }else if(check == "califMal"){
+    } else if (check == "califMal") {
         imgCalificacion = "CaraMal.JPG";
-    }else if(check == "califMuyMal"){
+    } else if (check == "califMuyMal") {
         imgCalificacion = "CaraMuyMal.JPG";
     }
 }
@@ -79,3 +78,73 @@ for (let x = 0; x < radios.length; x++) {
 }
 
 /*================== CHECK DE CALIFICACIÓN (FINAL) =================*/
+
+/*===============================================================*/
+
+/*================== CARGAR LISTA (INICIO) =================*/
+
+function cargarLista(list) {
+    document.getElementById("lista2").innerHTML = ``;
+    let selectListArtistas = document.getElementById("lista1");
+    selectListArtistas.innerHTML = ``;
+    list.forEach(artista => {
+        let opt = document.createElement("option");
+        opt.value = artista.getNombre();
+        opt.textContent = artista.getNombre();
+        selectListArtistas.appendChild(opt);
+    });
+}
+
+/*================== CARGAR LISTA (FINAL) =================*/
+
+/*===============================================================*/
+
+/*================== REGISTRO ARTISTA (INICIO) =================*/
+
+let listArtistas = [];
+
+function validarRegistroArtista(nombre, edad, estilo) {
+    let msg = "";
+    let alera = false;
+    if (nombre == "") {
+        msg += "- El nombre es obligatorio\n";
+        alera = true;
+    }
+    if (edad == "") {
+        msg += "- La edad es obligatoria\n";
+        alera = true;
+    }
+    if (estilo == "") {
+        msg += "- El estilo es obligatorio\n";
+        alera = true;
+    }
+
+    if (alera) {
+        alert(msg);
+    } else {
+        return true;
+    }
+}
+
+function registro() {
+    let nombre = document.getElementById('nombreArtista');
+    let edad = document.getElementById('edadArtista');
+    let estilo = document.getElementById('estiloArstista');
+    if (validarRegistroArtista(nombre.value, edad.value, estilo.value)) {
+        let artista = new Artista(nombre.value, edad.value, estilo.value);
+        listArtistas.push(artista);
+
+        nombre.value = "";
+        edad.value = "";
+        estilo.value = "";
+        cargarLista(listArtistas);
+    }
+}
+
+document.getElementById('btnRegistroArtista').onclick = (event) => {
+    event.preventDefault();
+    registro();
+}
+
+/*================== REGISTRO ARTISTA (FINAL) =================*/
+

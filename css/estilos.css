@@ -1,0 +1,285 @@
+/* FONTS */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+/* VARIABLES */
+:root {
+    --backMain: rgb(244, 244, 249);
+    /* CAMBIO DE COLORES PARA EL FONDO */
+    --Color_Primario: rgb(152, 251, 152);
+    --Campo_Primario: rgb(164, 235, 164);
+
+    --Color_Secundario: rgb(152, 251, 251);
+    --Campo_Secundario: rgb(164, 235, 251);
+
+    --Color_Terciario: rgb(251, 180, 152);
+    --Campo_Terciario: rgb(255, 191, 152);
+
+    /* CAMBIO BOTONES*/
+    --Btn-Primario: rgb(76, 175, 80);
+    --Btn-Primario_Hover: rgb(62, 150, 68);
+
+    --Btn-Secundario: rgb(76, 139, 175);
+    --Btn-Secundario_Hover: rgb(62, 150, 175);
+
+    --Btn-Terciario: rgb(175, 116, 76);
+    --Btn-Terciario_Hover: rgb(175, 113, 62);
+}
+
+/* GLOBALES */
+
+* {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+img {
+    border: 1px solid transparent;
+    width: 50px;
+    height: 50px;
+}
+
+li {
+    list-style-type: square;
+}
+
+button,
+input[type="button"] {
+    cursor: pointer;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"] {
+    padding: 5px 2px;
+    border: 1px solid gray;
+    border-radius: 3px;
+    outline: none;
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+textarea {
+    min-width: 98%;
+    width: 98%;
+    max-width: 0;
+    outline: none;
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    margin: 0;
+    padding: 2px 0;
+}
+
+h1,
+h2,
+h3 {
+    font-weight: bold;
+}
+
+h3,
+h4,
+label {
+    margin: 5px 0;
+}
+
+main {
+    padding: 30px;
+    background-color: var(--backMain);
+}
+
+table,
+th,
+td {
+    padding: 3px 4px;
+    text-align: center;
+    border: 1px solid black;
+}
+
+th {
+    background-color: white;
+}
+
+table {
+    width: 100%;
+    margin-top: 50px;
+}
+
+/* COLORES */
+
+.col-primario {
+    background-color: var(--Color_Primario);
+}
+
+.col-secundario {
+    background-color: var(--Color_Secundario);
+}
+
+.col-terciario {
+    background-color: var(--Color_Terciario);
+}
+
+/* CAMPOS */
+
+.cap-primario {
+    background-color: var(--Campo_Primario);
+}
+
+.cap-secundario {
+    background-color: var(--Campo_Secundario);
+}
+
+.cap-terciario {
+    background-color: var(--Campo_Terciario);
+}
+
+/* BOTONES */
+
+.btn-primario {
+    background-color: var(--Btn-Primario);
+}
+
+.btn-primario:hover {
+    background-color: var(--Btn-Primario_Hover);
+}
+
+.btn-secundario {
+    background-color: var(--Btn-Secundario);
+}
+
+.btn-secundario:hover {
+    background-color: var(--Btn-Secundario_Hover);
+}
+
+.btn-terciario {
+    background-color: var(--Btn-Terciario);
+}
+
+.btn-terciario:hover {
+    background-color: var(--Btn-Terciario_Hover);
+}
+
+/* CLASES */
+
+.check {
+    cursor: pointer;
+}
+
+.check:hover img {
+    border: 1px solid black;
+}
+
+.imgCheck img{
+    border: 1px solid black;
+}
+
+.header {
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    padding: 40px 0;
+}
+
+.checkbox {
+    margin-right: 10px;
+}
+
+.m-90 {
+    margin: 0 90px;
+}
+
+.w100 {
+    width: 100%;
+}
+
+.seccion {
+    margin-bottom: 30px;
+    padding: 30px;
+    border-radius: 25px;
+}
+
+.shadow {
+    -webkit-box-shadow: -1px 0px 5px -1px rgba(0, 0, 0, 0.40);
+    -moz-box-shadow: -1px 0px 5px -1px rgba(0, 0, 0, 0.40);
+    box-shadow: -1px 0px 5px -1px rgba(0, 0, 0, 0.40);
+}
+
+.d-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.d-flex {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+.btnPase {
+    text-align: center;
+    font-size: 20px;
+    width: 30px;
+    height: 30px;
+}
+
+.titleIngreso {
+    grid-column: 1/4;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.campoIngreso {
+    height: auto;
+    border-radius: 2px;
+    padding: 15px 10px;
+}
+
+.btn {
+    width: max-content;
+    border: none;
+    border-radius: 2px;
+    padding: 5px 15px;
+    margin: 10px 4px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.btn:hover {
+    cursor: pointer;
+}
+
+.selectTitulo {
+    width: max-content;
+}
+
+.selectExpocioxiones {
+    display: flex;
+    flex-direction: column;
+}
+
+.selectExpocioxiones-select {
+    width: max-content;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+}
