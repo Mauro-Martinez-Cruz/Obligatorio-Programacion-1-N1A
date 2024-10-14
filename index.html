@@ -1,0 +1,185 @@
+<!-- |*| GUILLERMO MARTÍNEZ (315270) |*| -->
+<!-- |*| MAURO MARTÍNEZ (331344) |*| -->
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/LogoORT.png">
+    <link rel="stylesheet" href="css/estilos.css">
+    <title>Museo de Arte - ORT</title>
+</head>
+
+<body>
+    <header class="header col-primario">
+        <h2>Museo de Arte</h2>
+        <p>Trabajo realizado por <a href="https://www.linkedin.com/in/guillermo-mart%C3%ADnez-22890223b/"
+                target=_blank>Guillermo
+                Martínez (315270)</a> y <a href="https://www.linkedin.com/in/mauro-martinez-03160923a/"
+                target=_blank>Mauro Martínez
+                (331344)</a></p>
+        <button id="btnCambioColor">Colores</button>
+    </header>
+
+    <main>
+        <section id="sectIngresos" class="seccion col-primario shadow d-grid">
+            <header class="titleIngreso">
+                <h3>Ingresos</h3>
+            </header>
+
+            <article id="regArtist">
+                <form class="campoIngreso cap-primario formulario">
+                    <h3>Registrar Artistas</h3>
+                    <label for="nombreArtista">Nombre: </label>
+                    <input type="text" id="nombreArtista" value="">
+                    <label for="edadArtista">Edad: </label>
+                    <input type="number" id="edadArtista" value="">
+                    <label for="estiloArstista">Características del estilo: </label>
+                    <textarea id="estiloArstista"></textarea>
+                    <button class="btn btn-primario">Agregar Artista</button>
+                </form>
+            </article>
+
+            <article id="ingExpo">
+                <form class="campoIngreso cap-primario formulario">
+                    <h3>Ingresar Exposiciones</h3>
+                    <label for="formTitl">Titulo: </label>
+                    <input type="text" id="formTitl" value="">
+                    <label for="fecha">Fecha de comienzo: </label>
+                    <input type="date" id="fecha">
+                    <label for="descrip">Descripción: </label>
+                    <textarea id="descrip"></textarea>
+                    <label>Elegir artistas: </label>
+                    <div class="d-flex">
+                        <select class="w100" id="lista1" multiple>
+                            <option value="nombre1">Nombre 1</option>
+                            <option value="nombre2">Nombre 2</option>
+                            <option value="nombre3">Nombre 3</option>
+                        </select>
+                        <input class="btnPase" type="button" id="btnPaseDerecho" value="»">
+                        <input class="btnPase" type="button" id="btnPaseIzquierdo" value="«">
+                        <select class="w100" id="lista2" multiple>
+                            <option value="nombre4">Nombre 4</option>
+                            <option value="nombre5">Nombre 5</option>
+                        </select>
+                    </div>
+                    <input type="button" value="Agregar Exposición" class="btn btn-primario">
+                </form>
+            </article>
+
+            <article id="comenVisitas">
+                <form class="campoIngreso cap-primario formulario">
+                    <h3>Comentarios de Visita</h3>
+                    <label for="expoVis">Exposición: </label>
+                    <select id="expoVis" class="selectTitulo">
+                        <option value="">Titulo 1</option>
+                    </select>
+                    <label for="formNombreVis">Nombre del visitante: </label>
+                    <input type="text" id="formNombreVis" value="">
+
+                    <label for="coment">Comentario: </label>
+                    <textarea id="coment"></textarea>
+
+
+                    <article>
+                        <h4>Calificación: </h4>
+                        <input type="radio" id="califMuyMal" name="calif">
+                        <label class="check" id="califMuyMalLbl" for="califMuyMal"><img src="img/CaraMuyMal.JPG"
+                                alt="Cara de muy mala exp. "></label>
+
+                        <input type="radio" id="califMal" name="calif">
+                        <label class="check" id="califMalLbl" for="califMal"><img src="img/CaraMal.JPG" alt="Cara de mala exp. "></label>
+
+                        <input type="radio" id="califNormal" name="calif">
+                        <label class="check" id="califNormalLbl" for="califNormal"><img src="img/CaraNormal.JPG"
+                                alt="Cara de exp. normal"></label>
+
+                        <input type="radio" id="califBien" name="calif">
+                        <label class="check" id="califBienLbl" for="califBien"><img src="img/CaraBien.JPG"
+                                alt="Cara de exp. bien"></label>
+
+                        <input type="radio" id="califMuyBien" name="calif" checked>
+                        <label class="check imgCheck" id="califMuyBienLbl" for="califMuyBien"><img src="img/CaraMuyBien.JPG"
+                                alt="Cara de exp. muy bien"></label>
+                    </article>
+
+                    <div>
+                        <input class="checkbox" type="checkbox" id="visitaGuiada" value="Visita">
+                        <label for="visitaGuiada">Hice visita guiada</label>
+                    </div>
+                    <input type="button" value="Agregar Comentario " class="btn btn-primario">
+
+                </form>
+            </article>
+        </section>
+
+        <section id="infoGeneral" class="seccion col-primario shadow m-90">
+
+            <header>
+                <h3>Información General</h3>
+            </header>
+
+            <article>
+                <h4>Titulo de la/s Exposición/es con más artistas:</h4>
+                <ul>
+                    <li>Datos Ficticios 1</li>
+                    <li>Datos Ficticios 2</li>
+                </ul>
+            </article>
+
+            <article>
+                <h4>Titulo y fecha de la/s Exposiciones sin comentarios: (ordenadas por fecha crecientes)</h4>
+                <ul>
+                    <li>Datos Ficticios 1</li>
+                    <li>Datos Ficticios 2</li>
+                </ul>
+            </article>
+
+            <article id="infoComentario">
+                <header>
+                    <h3>Información de Comentarios</h3>
+                </header>
+
+                <div class="selectExpocioxiones">
+                    <label for="expo">Exposición:</label>
+                    <select id="expo" class="selectExpocioxiones-select">
+                        <option value="">Todas</option>
+                    </select>
+                </div>
+
+                <table id="tablaComent">
+                    <tr>
+                        <th>Titulo</th>
+                        <th>Más datos</th>
+                        <th>Nombre</th>
+                        <th>Comentario</th>
+                        <th>Guiada</th>
+                        <th><input type="button" value=" Calificación creciente " class="btn btn-primario"></th>
+                    </tr>
+                    <tr>
+                        <td class="cap-primario">Titulo 1</td>
+                        <td class="cap-primario"><input type="button" value="Ampliar " class="btn btn-primario"></td>
+                        <td class="cap-primario">Nombre ficticio 1</td>
+                        <td class="cap-primario">Comentario ficticio 1</td>
+                        <td class="cap-primario">NO</td>
+                        <td class="cap-primario"><img src="img/CaraMuyMal.JPG" alt="Cara de muy mala exp. "></td>
+                    </tr>
+                    <tr>
+                        <td class="cap-primario">Titulo 1</td>
+                        <td class="cap-primario"><input type="button" value="Ampliar " class="btn btn-primario"></td>
+                        <td class="cap-primario">Nombre ficticio 2</td>
+                        <td class="cap-primario">Comentario ficticio 2</td>
+                        <td class="cap-primario">SI</td>
+                        <td class="cap-primario"><img src="img/CaraMuyBien.JPG" alt="Cara de muy Buena exp. "></td>
+                    </tr>
+                </table>
+            </article>
+        </section>
+    </main>
+
+    <script type="module" src="js/Clases.js"></script>
+    <script type="module" src="js/Funciones.js"></script>
+</body>
+
+</html>
