@@ -40,6 +40,33 @@ document.getElementById("btnCambioColor").onclick = () => {
 
 /*===============================================================*/
 
+/*================== CREAR MODALES (INICIO) =================*/
+
+function cerrarModalAlerta() {
+    let modal = document.getElementById('modalAlertas');
+    modal.onclick = () => {
+        modal.remove();
+    }
+}
+
+function modalAlerta(contenido) {
+    let body = document.getElementById('body');
+    let modal = document.createElement('div');
+    modal.id = 'modalAlertas';
+    modal.classList.add('modal');
+    modal.innerHTML = `
+        <div class="contenedor_modal radio shadow">
+            ${contenido}
+        </div>
+    `;
+    body.appendChild(modal);
+    cerrarModalAlerta();
+}
+
+/*================== CREAR MODALES (FINAL) =================*/
+
+/*===============================================================*/
+
 /*================== CHECK DE CALIFICACIÓN (INICIO) =================*/
 
 let radios = ['califMuyMal', 'califMal', 'califNormal', 'califBien', 'califMuyBien'];
@@ -99,21 +126,25 @@ let listArtistas = [];
 function validarRegistroArtista(nombre, edad, estilo) {
     let msg = "";
     let alera = false;
+    let cant = 0;
     if (nombre == "") {
-        msg += "- El nombre es obligatorio\n";
+        cant++;
+        msg += `<p class="py"><span class="numeral">${cant}</span> El nombre es obligatorio.</p>`;
         alera = true;
     }
     if (edad == "") {
-        msg += "- La edad es obligatoria\n";
+        cant++;
+        msg += `<p class="py"><span class="numeral">${cant}</span> La edad es obligatoria.</p>`;
         alera = true;
     }
     if (estilo == "") {
-        msg += "- El estilo es obligatorio\n";
+        cant++;
+        msg += `<p class="py"><span class="numeral">${cant}</span> El estilo es obligatorio.</p>`;
         alera = true;
     }
 
     if (alera) {
-        alert(msg);
+        modalAlerta(msg);
     } else {
         return true;
     }
