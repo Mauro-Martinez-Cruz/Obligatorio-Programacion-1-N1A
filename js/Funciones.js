@@ -56,6 +56,7 @@ function modalAlerta(contenido) {
     modal.classList.add('modal');
     modal.innerHTML = `
         <div class="contenedor_modal radio shadow">
+            <h2 style="text-align: center;">¡Advertencia!</h2>
             ${contenido}
         </div>
     `;
@@ -135,6 +136,14 @@ function validarRegistroArtista(nombre, edad, estilo) {
     if (edad == "") {
         cant++;
         msg += `<p class="py"><span class="numeral">${cant}</span> La edad es obligatoria.</p>`;
+        alera = true;
+    }else if(edad < 18){
+        cant++;
+        msg += `<p class="py"><span class="numeral">${cant}</span> Tiene que ser mayor de edad.</p>`;
+        alera = true;
+    }else if(edad > 120){
+        cant++;
+        msg += `<p class="py"><span class="numeral">${cant}</span> Exeso de edad.</p>`;
         alera = true;
     }
     if (estilo == "") {

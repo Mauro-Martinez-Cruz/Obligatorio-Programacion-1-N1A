@@ -34,7 +34,7 @@
                     <label for="nombreArtista">Nombre: </label>
                     <input type="text" id="nombreArtista" value="">
                     <label for="edadArtista">Edad: </label>
-                    <input type="number" id="edadArtista" value="">
+                    <input type="number" id="edadArtista" value="" min="18" max="120">
                     <label for="estiloArstista">Características del estilo: </label>
                     <textarea id="estiloArstista"></textarea>
                     <button id="btnRegistroArtista" class="btn btn-primario">Agregar Artista</button>
@@ -54,11 +54,16 @@
                     <div class="d-flex">
                         <select class="w100" id="lista1" multiple>
                             <!-- OPTIONS CON JAVASCRIPT -->
+                            <option value="">Numero 1</option>
+                            <option value="">Numero 2</option>
+                            <option value="">Numero 3</option>
                         </select>
                         <input class="btnPase" type="button" id="btnPaseDerecho" value="»">
                         <input class="btnPase" type="button" id="btnPaseIzquierdo" value="«">
                         <select class="w100" id="lista2" multiple>
                             <!-- OPTIONS CON JAVASCRIPT -->
+                            <option value="">Numero 4</option>
+                            <option value="">Numero 5</option>
                         </select>
                     </div>
                     <input type="button" value="Agregar Exposición" class="btn btn-primario">
@@ -86,7 +91,8 @@
                                 alt="Cara de muy mala exp. "></label>
 
                         <input type="radio" id="califMal" name="calif">
-                        <label class="check" id="califMalLbl" for="califMal"><img src="img/CaraMal.JPG" alt="Cara de mala exp. "></label>
+                        <label class="check" id="califMalLbl" for="califMal"><img src="img/CaraMal.JPG"
+                                alt="Cara de mala exp. "></label>
 
                         <input type="radio" id="califNormal" name="calif">
                         <label class="check" id="califNormalLbl" for="califNormal"><img src="img/CaraNormal.JPG"
@@ -97,8 +103,8 @@
                                 alt="Cara de exp. bien"></label>
 
                         <input type="radio" id="califMuyBien" name="calif" checked>
-                        <label class="check imgCheck" id="califMuyBienLbl" for="califMuyBien"><img src="img/CaraMuyBien.JPG"
-                                alt="Cara de exp. muy bien"></label>
+                        <label class="check imgCheck" id="califMuyBienLbl" for="califMuyBien"><img
+                                src="img/CaraMuyBien.JPG" alt="Cara de exp. muy bien"></label>
                     </article>
 
                     <div>
