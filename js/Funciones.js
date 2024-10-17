@@ -187,11 +187,116 @@ document.getElementById('btnRegistroArtista').onclick = (event) => {
 
 /*===============================================================*/
 
+/*================== LISTAS DE ARTISTAS SELECIONADOS (INICIO) =================*/
+
+let lista1 = document.getElementById('lista1');
+let lista2 = document.getElementById('lista2');
+
+function pasajeArtistasListas(listaA, listaB) {
+    for (let i = 0; i < listaA.options.length; i++) {
+        let opt = listaA.options[i];
+        if (opt.selected == true) {
+            listaB.appendChild(opt);
+        }
+    }
+}
+
+document.getElementById('btnPaseDerecho').onclick = () => {
+    pasajeArtistasListas(lista1, lista2);
+};
+
+document.getElementById('btnPaseIzquierdo').onclick = () => {
+    pasajeArtistasListas(lista2, lista1);
+};
+
+/*================== LISTAS DE ARTISTAS SELECIONADOS (FINAL) =================*/
+
+/*===============================================================*/
+
+/*================== RECORRER LISTA DE ARTISTAS SELECIONADOS (INICIO) =================*/
+
+function recorrerListaArtistasSelecionados() {
+    let arrArtistas = [];
+    let select = document.getElementById('lista2');
+    // RECORRE LOS OPTION EN EL SELECT MIENTRA LOS COMPARA CON LOS ARTISTAS EN EL AREGLO "listArtistas" (INICIO)
+    for (let i = 0; i < select.options.length; i++) {
+        listArtistas.forEach(artista => {
+            if (artista.getNombre() == select.options[i].value) {
+                arrArtistas.push(artista);
+            }
+        });
+    }
+    // RECORRE LOS OPTION EN EL SELECT MIENTRA LOS COMPARA CON LOS ARTISTAS EN EL AREGLO "listArtistas" (FINAL)
+    return arrArtistas;
+}
+
+/*================== RECORRER LISTA DE ARTISTAS SELECIONADOS (FINAL) =================*/
+
+/*===============================================================*/
+
+/*================== REGISTRO EXPOSICIÓN (INICIO) =================*/
+
+let listExposiciones = [];
+
+function validarRegistroExposicion(titulo, fecha, descripcion, artistas) {
+    let msg = "";
+    let alera = false;
+    if (titulo == "") {
+        msg += `<p class="alerta">El titulo es obligatorio</p>`;
+        alera = true;
+    }
+    if (fecha == "") {
+        msg += `<p class="alerta">La fecha es obligatoria</p>`;
+        alera = true;
+    }
+    if (descripcion == "") {
+        msg += `<p class="alerta">La descripcion es obligatoria</p>`;
+        alera = true;
+    }
+    if (artistas.length == 0) {
+        msg += `<p class="alerta">Seleccione los artistas de la exposición</p>`;
+        alera = true;
+    }
+
+    if (alera) {
+        modalAlerta("¡Advertencia!", msg);
+    } else {
+        return true;
+    }
+}
+
+function registroExposicion() {
+    let titulo = document.getElementById('formTitl');
+    let fecha = document.getElementById('fecha');
+    let descripcion = document.getElementById('descrip');
+    let arrArtistas = recorrerListaArtistasSelecionados();
+    if (validarRegistroExposicion(titulo.value, fecha.value, descripcion.value, arrArtistas)) {
+        let exposicion = new Exposicion(titulo.value, fecha.value, descripcion.value, arrArtistas);
+        listExposiciones.push(exposicion);
+
+        titulo.value = "";
+        fecha.value = "";
+        descripcion.value = "";
+        for (let i = 0; i < lista2.options.length; i++) {
+            let opt = lista2.options[i];
+            lista1.appendChild(opt);
+        }
+    }
+}
+
+document.getElementById('btnRegistroExposicion').onclick = (event) => {
+    event.preventDefault();
+    registroExposicion();
+};
+
+/*================== REGISTRO EXPOSICIÓN (FINAL) =================*/
+
+/*===============================================================*/
+
 /*================== INFORMACIÓN DE EXPOSICIÓN (INICIO) =================*/
 let comentarios = 2;
 
-for(let i = 1; i <= comentarios; i++){
-    console.log("Entra");
+for (let i = 1; i <= comentarios; i++) {
     document.getElementById(`btnPruebaNro${i}`).onclick = () => {
         let msg = `
             <p><span class="des-expo">Fecha: </span>10/03/2024</p>
