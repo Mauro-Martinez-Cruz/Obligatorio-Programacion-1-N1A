@@ -1,5 +1,7 @@
-/* FONTS */
+/* MAURO MARTÍNEZ (331344) */
+/* GUILLERMO MARTÍNEZ (315270) */
 
+/* FONTS */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 /* VARIABLES */
@@ -39,7 +41,7 @@ body {
 }
 
 img {
-    border: 1px solid transparent;
+    border: 2px solid transparent;
     width: 50px;
     height: 50px;
 }
@@ -116,6 +118,7 @@ th {
 
 table {
     width: 100%;
+    border-radius: 5px;
     margin-top: 50px;
 }
 
@@ -183,20 +186,15 @@ table {
     border-radius: 5px;
 }
 
-.py {
-    padding: 2px;
-}
-
-.numeral {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 10px;
+.alerta{
+    margin: 10px 5px;
     padding: 5px;
-    border: 1px solid black;
-    border-radius: 50%;
-    width: 10px;
-    height: 10px;
+    text-transform: uppercase;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    background-color: red;
 }
 
 .check {
@@ -204,11 +202,11 @@ table {
 }
 
 .check:hover img {
-    border: 1px solid black;
+    border: 2px solid rgb(3, 34, 206);
 }
 
 .imgCheck img {
-    border: 1px solid black;
+    border: 2px solid black;
 }
 
 .header {
@@ -329,4 +327,42 @@ table {
     padding: 20px;
     border: 1px solid #888;
     width: 400px;
+}
+
+.titulo-modal{
+    display: grid;
+    grid-template-columns: repeat(12,1fr);
+    padding-bottom: 8px;
+    border-bottom: 1px solid gray;
+}
+
+.titulo-modal-txt{
+    grid-column: 1/12;
+    text-align: center;
+}
+.cerrar-modal{
+    grid-column: 12;
+    border-radius: 50%;
+    font-size: 15px;
+    color: gray;
+    background-color: white;
+}
+
+.des-expo {
+    font-weight: 600;
+}
+
+.tableExposicion {
+    margin-top: 10px;
+}
+
+.br-none {
+    border: none;
+}
+
+.tab-head {
+    background-color: gainsboro;
+    border-left: none;
+    border-right: none;
+    font-weight: bold;
 }

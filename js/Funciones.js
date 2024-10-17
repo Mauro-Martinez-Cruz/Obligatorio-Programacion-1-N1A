@@ -44,20 +44,30 @@ document.getElementById("btnCambioColor").onclick = () => {
 
 function cerrarModalAlerta() {
     let modal = document.getElementById('modalAlertas');
-    modal.onclick = () => {
-        modal.remove();
+    window.onclick = event => {
+        if (event.target == modal) {
+            modal.remove();
+        }
     }
+
+    document.querySelector('.cerrar-modal').onclick = () => {
+        modal.remove();
+    };
 }
 
-function modalAlerta(contenido) {
+function modalAlerta(titulo, contenido) {
     let body = document.getElementById('body');
     let modal = document.createElement('div');
     modal.id = 'modalAlertas';
     modal.classList.add('modal');
     modal.innerHTML = `
         <div class="contenedor_modal radio shadow">
-            <h2 style="text-align: center;">¡Advertencia!</h2>
+            <div class="titulo-modal">
+                <h2 class="titulo-modal-txt">${titulo}</h2>
+                <button class="cerrar-modal shadow">x</button>
+            </div>
             ${contenido}
+
         </div>
     `;
     body.appendChild(modal);
@@ -127,33 +137,27 @@ let listArtistas = [];
 function validarRegistroArtista(nombre, edad, estilo) {
     let msg = "";
     let alera = false;
-    let cant = 0;
     if (nombre == "") {
-        cant++;
-        msg += `<p class="py"><span class="numeral">${cant}</span> El nombre es obligatorio.</p>`;
+        msg += `<p class="alerta">El nombre es obligatorio</p>`;
         alera = true;
     }
     if (edad == "") {
-        cant++;
-        msg += `<p class="py"><span class="numeral">${cant}</span> La edad es obligatoria.</p>`;
+        msg += `<p class="alerta">La edad es obligatoria</p>`;
         alera = true;
-    }else if(edad < 18){
-        cant++;
-        msg += `<p class="py"><span class="numeral">${cant}</span> Tiene que ser mayor de edad.</p>`;
+    } else if (edad < 18) {
+        msg += `<p class="alerta">Tiene que ser mayor de edad</p>`;
         alera = true;
-    }else if(edad > 120){
-        cant++;
-        msg += `<p class="py"><span class="numeral">${cant}</span> Exeso de edad.</p>`;
+    } else if (edad > 120) {
+        msg += `<p class="alerta">Exeso de edad</p>`;
         alera = true;
     }
     if (estilo == "") {
-        cant++;
-        msg += `<p class="py"><span class="numeral">${cant}</span> El estilo es obligatorio.</p>`;
+        msg += `<p class="alerta">El estilo es obligatorio</p>`;
         alera = true;
     }
 
     if (alera) {
-        modalAlerta(msg);
+        modalAlerta("¡Advertencia!", msg);
     } else {
         return true;
     }
@@ -180,4 +184,49 @@ document.getElementById('btnRegistroArtista').onclick = (event) => {
 }
 
 /*================== REGISTRO ARTISTA (FINAL) =================*/
+
+/*===============================================================*/
+
+/*================== INFORMACIÓN DE EXPOSICIÓN (INICIO) =================*/
+let comentarios = 2;
+
+for(let i = 1; i <= comentarios; i++){
+    console.log("Entra");
+    document.getElementById(`btnPruebaNro${i}`).onclick = () => {
+        let msg = `
+            <p><span class="des-expo">Fecha: </span>10/03/2024</p>
+            <p><span class="des-expo">Descripción: </span>Emociones humanas con uso del color</p>
+            <p><span class="des-expo">Artistas:</span></p>
+            <table class="tableExposicion">
+                <thead>
+                    <tr>
+                        <td class="tab-head">Nombre</td>
+                        <td class="tab-head">Edad</td>
+                        <td class="tab-head">Estilo</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="br-none">Camila Gonzalez</td>
+                        <td class="br-none">27</td>
+                        <td class="br-none">Abstracto</td>
+                    </tr>
+                    <tr>
+                        <td class="br-none">Mateo Ruiz</td>
+                        <td class="br-none">34</td>
+                        <td class="br-none">Impresionismo</td>
+                    </tr>
+                    <tr>
+                        <td class="br-none">Sofia Valenzuela</td>
+                        <td class="br-none">29</td>
+                        <td class="br-none">Realizmo</td>
+                    </tr>
+                </tbody>
+            </table>
+        `;
+        modalAlerta('Información de la Exposición', msg);
+    };
+}
+
+/*================== INFORMACIÓN DE EXPOSICIÓN (FINAL) =================*/
 

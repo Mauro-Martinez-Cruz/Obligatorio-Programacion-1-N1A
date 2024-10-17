@@ -16,7 +16,7 @@
         <h2>Museo de Arte</h2>
         <p>Trabajo realizado por <a href="https://www.linkedin.com/in/guillermo-mart%C3%ADnez-22890223b/"
                 target=_blank>Guillermo
-                Martínez (315270)</a> y <a href="https://www.linkedin.com/in/mauro-martinez-03160923a/"
+                Martínez (315270)</a> y <a href="https://portfolio-mauromartinez-cruz.netlify.app/"
                 target=_blank>Mauro Martínez
                 (331344)</a></p>
         <button id="btnCambioColor">Colores</button>
@@ -31,11 +31,11 @@
             <article id="regArtist">
                 <form class="campoIngreso cap-primario formulario">
                     <h3>Registrar Artistas</h3>
-                    <label for="nombreArtista">Nombre: </label>
-                    <input type="text" id="nombreArtista" value="">
-                    <label for="edadArtista">Edad: </label>
-                    <input type="number" id="edadArtista" value="" min="18" max="120">
-                    <label for="estiloArstista">Características del estilo: </label>
+                    <label for="nombreArtista">Nombre:</label>
+                    <input type="text" required id="nombreArtista" value="">
+                    <label for="edadArtista">Edad:</label>
+                    <input type="number" required id="edadArtista" value="" min="18" max="120">
+                    <label for="estiloArstista">Características del estilo:</label>
                     <textarea id="estiloArstista"></textarea>
                     <button id="btnRegistroArtista" class="btn btn-primario">Agregar Artista</button>
                 </form>
@@ -44,26 +44,26 @@
             <article id="ingExpo">
                 <form class="campoIngreso cap-primario formulario">
                     <h3>Ingresar Exposiciones</h3>
-                    <label for="formTitl">Titulo: </label>
-                    <input type="text" id="formTitl" value="">
-                    <label for="fecha">Fecha de comienzo: </label>
+                    <label for="formTitl">Titulo:</label>
+                    <input type="text" required id="formTitl" value="">
+                    <label for="fecha">Fecha de comienzo:</label>
                     <input type="date" id="fecha">
-                    <label for="descrip">Descripción: </label>
+                    <label for="descrip">Descripción:</label>
                     <textarea id="descrip"></textarea>
-                    <label>Elegir artistas: </label>
+                    <label>Elegir artistas:</label>
                     <div class="d-flex">
                         <select class="w100" id="lista1" multiple>
                             <!-- OPTIONS CON JAVASCRIPT -->
-                            <option value="">Numero 1</option>
-                            <option value="">Numero 2</option>
-                            <option value="">Numero 3</option>
+                            <option value="">Nombre 1</option>
+                            <option value="">Nombre 2</option>
+                            <option value="">Nombre 3</option>
                         </select>
-                        <input class="btnPase" type="button" id="btnPaseDerecho" value="»">
-                        <input class="btnPase" type="button" id="btnPaseIzquierdo" value="«">
+                        <input class="btnPase" type="button" id="btnPaseDerecho" value=">>">
+                        <input class="btnPase" type="button" id="btnPaseIzquierdo" value="<<">
                         <select class="w100" id="lista2" multiple>
                             <!-- OPTIONS CON JAVASCRIPT -->
-                            <option value="">Numero 4</option>
-                            <option value="">Numero 5</option>
+                            <option value="">Nombre 4</option>
+                            <option value="">Nombre 5</option>
                         </select>
                     </div>
                     <input type="button" value="Agregar Exposición" class="btn btn-primario">
@@ -72,20 +72,20 @@
 
             <article id="comenVisitas">
                 <form class="campoIngreso cap-primario formulario">
-                    <h3>Comentarios de Visita</h3>
-                    <label for="expoVis">Exposición: </label>
+                    <h3>Comentarios de Visitas</h3>
+                    <label for="expoVis">Exposición:</label>
                     <select id="expoVis" class="selectTitulo">
                         <option value="">Titulo 1</option>
                     </select>
-                    <label for="formNombreVis">Nombre del visitante: </label>
-                    <input type="text" id="formNombreVis" value="">
+                    <label for="formNombreVis">Nombre del visitante:</label>
+                    <input type="text" required id="formNombreVis" value="">
 
-                    <label for="coment">Comentario: </label>
+                    <label for="coment">Comentario:</label>
                     <textarea id="coment"></textarea>
 
 
                     <article>
-                        <h4>Calificación: </h4>
+                        <h4>Calificación:</h4>
                         <input type="radio" id="califMuyMal" name="calif">
                         <label class="check" id="califMuyMalLbl" for="califMuyMal"><img src="img/CaraMuyMal.JPG"
                                 alt="Cara de muy mala exp. "></label>
@@ -111,7 +111,7 @@
                         <input class="checkbox" type="checkbox" id="visitaGuiada" value="Visita">
                         <label for="visitaGuiada">Hice visita guiada</label>
                     </div>
-                    <input type="button" value="Agregar Comentario " class="btn btn-primario">
+                    <input type="button" value="Agregar Comentario" class="btn btn-primario">
 
                 </form>
             </article>
@@ -132,7 +132,7 @@
             </article>
 
             <article>
-                <h4>Titulo y fecha de la/s Exposiciones sin comentarios: (ordenadas por fecha crecientes)</h4>
+                <h4>Titulo y fecha de la/s Exposiciones sin comentarios: (ordenadas por fecha creciente)</h4>
                 <ul>
                     <li>Datos Ficticios 1</li>
                     <li>Datos Ficticios 2</li>
@@ -158,19 +158,19 @@
                         <th>Nombre</th>
                         <th>Comentario</th>
                         <th>Guiada</th>
-                        <th><input type="button" value=" Calificación creciente " class="btn btn-primario"></th>
+                        <th><input type="button" value="Calificación creciente" class="btn btn-primario"></th>
                     </tr>
                     <tr>
                         <td class="cap-primario">Titulo 1</td>
-                        <td class="cap-primario"><input type="button" value="Ampliar " class="btn btn-primario"></td>
+                        <td class="cap-primario"><input id="btnPruebaNro1" type="button" value="Ampliar " class="btn btn-primario"></td>
                         <td class="cap-primario">Nombre ficticio 1</td>
                         <td class="cap-primario">Comentario ficticio 1</td>
                         <td class="cap-primario">NO</td>
                         <td class="cap-primario"><img src="img/CaraMuyMal.JPG" alt="Cara de muy mala exp. "></td>
                     </tr>
                     <tr>
-                        <td class="cap-primario">Titulo 1</td>
-                        <td class="cap-primario"><input type="button" value="Ampliar " class="btn btn-primario"></td>
+                        <td class="cap-primario">Titulo 2</td>
+                        <td class="cap-primario"><input id="btnPruebaNro2" type="button" value="Ampliar " class="btn btn-primario"></td>
                         <td class="cap-primario">Nombre ficticio 2</td>
                         <td class="cap-primario">Comentario ficticio 2</td>
                         <td class="cap-primario">SI</td>
