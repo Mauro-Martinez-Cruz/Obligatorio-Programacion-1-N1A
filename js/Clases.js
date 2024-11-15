@@ -63,11 +63,12 @@ class Exposicion {
 
 class Visita {
 
-    constructor(exposicion, nombre, comentario, calificacion) {
+    constructor(exposicion, nombre, comentario, calificacion, guiada) {
         this.exposicion = exposicion;
         this.nombre = nombre;
         this.comentario = comentario;
         this.calificacion = calificacion;
+        this.guiada = guiada;
     }
 
     getExposicion() {
@@ -86,6 +87,10 @@ class Visita {
         return this.calificacion;
     }
 
+    getGuiada() {
+        return this.guiada;
+    }
+
 }
 
 /*===================== VISITA (FINAL) =====================*/
@@ -97,7 +102,34 @@ class Visita {
 class Sistema {
 
     constructor() {
+        this.listaArtista = [];
+        this.listaExposicion = [];
+        this.listaVisita = [];
+    }
 
+    addArtista(artista) { 
+        this.listaArtista.push(artista); 
+    }
+    
+    addExposicion(exposicion) { 
+        this.listaExposicion.push(exposicion); 
+    }
+
+    addVisita(visita) { 
+        this.listaVisita.push(visita); 
+    }
+
+
+    getArtistas() { 
+        return this.listaArtista; 
+    }
+
+    getExposiciones() { 
+        return this.listaExposicion; 
+    }
+
+    getVisitas() { 
+        return this.listaVisita; 
     }
 
 }

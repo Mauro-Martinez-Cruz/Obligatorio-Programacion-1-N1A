@@ -6,183 +6,215 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="fonts"
+        href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap">
     <link rel="icon" href="img/LogoORT.png">
+
+    <!-- |*| ESTILOS DE CSS |*| -->
     <link rel="stylesheet" href="css/estilos.css">
+
+    <!-- |*| SCRIPTS DE JAVASCRIPT |*| -->
+    <script src="js/Clases.js"></script>
+    <script src="js/Funciones.js"></script>
+
     <title>Museo de Arte - ORT</title>
 </head>
 
-<body id="body">
+<body id="idBody">
     <header class="header col-primario">
-        <h2>Museo de Arte</h2>
-        <p>Trabajo realizado por <a href="https://www.linkedin.com/in/guillermo-mart%C3%ADnez-22890223b/"
-                target=_blank>Guillermo
-                Martínez (315270)</a> y <a href="https://portfolio-mauromartinez-cruz.netlify.app/"
-                target=_blank>Mauro Martínez
-                (331344)</a></p>
-        <button id="btnCambioColor">Colores</button>
+        <h2 class="header__title">Museo de Arte</h2>
+        <p class="header__texto">Trabajo realizado por</p>
+        <p class="header__texto">
+            <a class="header__link" href="https://www.linkedin.com/in/guillermo-mart%C3%ADnez-22890223b/" target=_blank>
+                <img src="img/g.perfil.jpg" class="header__link__perfil">
+                Guillermo Martínez
+                <span>315270</span>
+            </a>
+            y
+            <a class="header__link" href="https://blackwolf-dev-portfolio.netlify.app/" target=_blank>
+                <img src="img/m.perfil.webp" class="header__link__perfil">
+                Mauro Martínez
+                <span>331344</span>
+            </a>
+        </p>
+        <button id="idBtnCambioColor" class="btn-primario header__btn">Colores</button>
     </header>
 
     <main>
-        <section id="sectIngresos" class="seccion col-primario shadow d-grid">
-            <header class="titleIngreso">
+        <section class="seccion col-primario shadow">
+            <header class="seccion__title">
                 <h3>Ingresos</h3>
             </header>
 
-            <article id="regArtist">
-                <form class="campoIngreso cap-primario formulario">
-                    <h3>Registrar Artistas</h3>
-                    <label for="nombreArtista">Nombre:</label>
-                    <input type="text" required id="nombreArtista" value="">
-                    <label for="edadArtista">Edad:</label>
-                    <input type="number" required id="edadArtista" value="" min="18" max="120">
-                    <label for="estiloArstista">Características del estilo:</label>
-                    <textarea id="estiloArstista"></textarea>
-                    <button id="btnRegistroArtista" class="btn btn-primario">Agregar Artista</button>
-                </form>
-            </article>
+            <div class="seccion__container">
+                <article>
+                    <form class="seccion__campo cap-primario formulario">
+                        <h3 class="seccion__campo__title">Registrar Artistas</h3>
+                        <label class="seccion__campo__label" for="idNombreArtista">Nombre:</label>
+                        <input class="seccion__campo__datos" type="text" required id="idNombreArtista" value="">
+                        <label class="seccion__campo__label" for="idEdadArtista">Edad:</label>
+                        <input class="seccion__campo__datos" type="number" required id="idEdadArtista" value="" min="18"
+                            max="120">
+                        <label class="seccion__campo__label" for="idEstiloArstista">Características del estilo:</label>
+                        <textarea class="seccion__campo__datos" id="idEstiloArstista"></textarea>
+                        <input id="idBtnRegistroArtista" type="button" value="Agregar Artista" class="btn btn-primario">
+                    </form>
+                </article>
 
-            <article id="ingExpo">
-                <form class="campoIngreso cap-primario formulario">
-                    <h3>Ingresar Exposiciones</h3>
-                    <label for="formTitl">Titulo:</label>
-                    <input type="text" required id="formTitl" value="">
-                    <label for="fecha">Fecha de comienzo:</label>
-                    <input type="date" id="fecha">
-                    <label for="descrip">Descripción:</label>
-                    <textarea id="descrip"></textarea>
-                    <label>Elegir artistas:</label>
-                    <div class="d-flex">
-                        <select class="w100" id="lista1" multiple>
-                            <!-- OPTIONS CON JAVASCRIPT -->
-                            <option value="">Nombre 1</option>
-                            <option value="">Nombre 2</option>
-                            <option value="">Nombre 3</option>
+                <article id="ingExpo">
+                    <form class="seccion__campo cap-primario formulario">
+                        <h3 class="seccion__campo__title">Ingresar Exposiciones</h3>
+                        <label class="seccion__campo__label" for="idExpoTitulo">Titulo:</label>
+                        <input class="seccion__campo__datos" type="text" required id="idExpoTitulo" value="">
+                        <label class="seccion__campo__label" for="idExpoFecha">Fecha de comienzo:</label>
+                        <input class="seccion__campo__datos" type="date" id="idExpoFecha">
+                        <label class="seccion__campo__label" for="idExpoDescripcion">Descripción:</label>
+                        <textarea class="seccion__campo__datos" id="idExpoDescripcion"></textarea>
+                        <label>Elegir artistas:</label>
+                        <div class="seccion__campo__listas">
+                            <select class="seccion__campo__listas--uno" id="idListaArtistasUno" multiple>
+                                <!-- OPTIONS CON JAVASCRIPT -->
+                                <option value="">Nombre 1</option>
+                                <option value="">Nombre 2</option>
+                                <option value="">Nombre 3</option>
+                            </select>
+                            <div class="seccion__campo__listas--btn">
+                                <input type="button" id="idBtnPaseDerecho" value=">>">
+                                <input type="button" id="idBtnPaseIzquierdo" value="<<">
+                            </div>
+                            <select class="seccion__campo__listas--dos" id="idListaArtistasDos" multiple>
+                                <!-- OPTIONS CON JAVASCRIPT -->
+                                <option value="">Nombre 4</option>
+                                <option value="">Nombre 5</option>
+                            </select>
+                        </div>
+                        <input id="idBtnRegistroExposicion" type="button" value="Agregar Exposición"
+                            class="btn btn-primario">
+                    </form>
+                </article>
+
+                <article class="seccion__campo--end">
+                    <form class="seccion__campo cap-primario formulario">
+                        <h3 class="seccion__campo__title">Comentarios de Visitas</h3>
+                        <label class="seccion__campo__label" for="idVisitaExpo">Exposición:</label>
+                        <select class="seccion__campo__select" id="idVisitaExpo" class="selectTitulo">
+                            <option value="">Titulo 1</option>
                         </select>
-                        <input class="btnPase" type="button" id="btnPaseDerecho" value=">>">
-                        <input class="btnPase" type="button" id="btnPaseIzquierdo" value="<<">
-                        <select class="w100" id="lista2" multiple>
-                            <!-- OPTIONS CON JAVASCRIPT -->
-                            <option value="">Nombre 4</option>
-                            <option value="">Nombre 5</option>
-                        </select>
-                    </div>
-                    <input id="btnRegistroExposicion" type="button" value="Agregar Exposición" class="btn btn-primario">
-                </form>
-            </article>
+                        <label class="seccion__campo__label" for="idVisitaNombre">Nombre del visitante:</label>
+                        <input class="seccion__campo__datos" type="text" required id="idVisitaNombre" value="">
 
-            <article id="comenVisitas">
-                <form class="campoIngreso cap-primario formulario">
-                    <h3>Comentarios de Visitas</h3>
-                    <label for="expoVis">Exposición:</label>
-                    <select id="expoVis" class="selectTitulo">
-                        <option value="">Titulo 1</option>
-                    </select>
-                    <label for="formNombreVis">Nombre del visitante:</label>
-                    <input type="text" required id="formNombreVis" value="">
-
-                    <label for="coment">Comentario:</label>
-                    <textarea id="coment"></textarea>
+                        <label class="seccion__campo__label" for="idVisitaComentario">Comentario:</label>
+                        <textarea class="seccion__campo__datos" id="idVisitaComentario"></textarea>
 
 
-                    <article>
-                        <h4>Calificación:</h4>
-                        <input type="radio" id="califMuyMal" name="calif">
-                        <label class="check" id="califMuyMalLbl" for="califMuyMal"><img src="img/CaraMuyMal.JPG"
-                                alt="Cara de muy mala exp. "></label>
+                        <article>
+                            <h4>Calificación:</h4>
+                            <input type="radio" id="caraMuyMal" name="calif">
+                            <label class="check" id="caraMuyMalLbl" for="caraMuyMal"><img src="img/caraMuyMal.JPG"
+                                    alt="Cara de muy mala exp. "></label>
 
-                        <input type="radio" id="califMal" name="calif">
-                        <label class="check" id="califMalLbl" for="califMal"><img src="img/CaraMal.JPG"
-                                alt="Cara de mala exp. "></label>
+                            <input type="radio" id="caraMal" name="calif">
+                            <label class="check" id="caraMalLbl" for="caraMal"><img src="img/caraMal.JPG"
+                                    alt="Cara de mala exp. "></label>
 
-                        <input type="radio" id="califNormal" name="calif">
-                        <label class="check" id="califNormalLbl" for="califNormal"><img src="img/CaraNormal.JPG"
-                                alt="Cara de exp. normal"></label>
+                            <input type="radio" id="caraNormal" name="calif">
+                            <label class="check" id="caraNormalLbl" for="caraNormal"><img src="img/caraNormal.JPG"
+                                    alt="Cara de exp. normal"></label>
 
-                        <input type="radio" id="califBien" name="calif">
-                        <label class="check" id="califBienLbl" for="califBien"><img src="img/CaraBien.JPG"
-                                alt="Cara de exp. bien"></label>
+                            <input type="radio" id="caraBien" name="calif">
+                            <label class="check" id="caraBienLbl" for="caraBien"><img src="img/caraBien.JPG"
+                                    alt="Cara de exp. bien"></label>
 
-                        <input type="radio" id="califMuyBien" name="calif" checked>
-                        <label class="check imgCheck" id="califMuyBienLbl" for="califMuyBien"><img
-                                src="img/CaraMuyBien.JPG" alt="Cara de exp. muy bien"></label>
-                    </article>
+                            <input type="radio" id="caraMuyBien" name="calif" checked>
+                            <label class="check imgCheck" id="caraMuyBienLbl" for="caraMuyBien"><img
+                                    src="img/caraMuyBien.JPG" alt="Cara de exp. muy bien"></label>
+                        </article>
 
-                    <div>
-                        <input class="checkbox" type="checkbox" id="visitaGuiada" value="Visita">
-                        <label for="visitaGuiada">Hice visita guiada</label>
-                    </div>
-                    <input type="button" value="Agregar Comentario" class="btn btn-primario">
+                        <div class="section__campo__checkbox">
+                            <input class="checkbox" type="checkbox" id="idVisitaGuiada" value="Visita">
+                            <label for="idVisitaGuiada">Hice visita guiada</label>
+                        </div>
+                        <input id="idBtnRegistroVisita" type="button" value="Agregar Comentario"
+                            class="btn btn-primario">
 
-                </form>
-            </article>
+                    </form>
+                </article>
+            </div>
         </section>
 
-        <section id="infoGeneral" class="seccion col-primario shadow m-90">
+        <section class="seccion seccion--acotada col-primario shadow">
 
-            <header>
+            <header class="seccion__title">
                 <h3>Información General</h3>
             </header>
 
-            <article>
-                <h4>Titulo de la/s Exposición/es con más artistas:</h4>
-                <ul>
+            <article class="seccion__articulo">
+                <h4 class="seccion__articulo__title">Titulo de la/s Exposición/es con más artistas:</h4>
+                <ul class="seccion__articulo__ul">
                     <li>Datos Ficticios 1</li>
                     <li>Datos Ficticios 2</li>
                 </ul>
             </article>
 
-            <article>
-                <h4>Titulo y fecha de la/s Exposiciones sin comentarios: (ordenadas por fecha creciente)</h4>
-                <ul>
+            <article class="seccion__articulo">
+                <h4 class="seccion__articulo__title">Titulo y fecha de la/s Exposiciones sin comentarios: (ordenadas por
+                    fecha creciente)</h4>
+                <ul class="seccion__articulo__ul">
                     <li>Datos Ficticios 1</li>
                     <li>Datos Ficticios 2</li>
                 </ul>
             </article>
 
-            <article id="infoComentario">
+            <article class="seccion__articulo">
                 <header>
-                    <h3>Información de Comentarios</h3>
+                    <h4 class="seccion__articulo__title">Información de Comentarios</h4>
                 </header>
 
-                <div class="selectExpocioxiones">
+                <div class="seccion__articulo__select">
                     <label for="expo">Exposición:</label>
-                    <select id="expo" class="selectExpocioxiones-select">
+                    <select id="idExpisicionesTabla" class="selectExpocioxiones-select">
                         <option value="">Todas</option>
                     </select>
                 </div>
 
-                <table id="tablaComent">
-                    <tr>
-                        <th>Titulo</th>
-                        <th>Más datos</th>
-                        <th>Nombre</th>
-                        <th>Comentario</th>
-                        <th>Guiada</th>
-                        <th><input type="button" value="Calificación creciente" class="btn btn-primario"></th>
-                    </tr>
-                    <tr>
-                        <td class="cap-primario">Titulo 1</td>
-                        <td class="cap-primario"><input id="btnPruebaNro1" type="button" value="Ampliar " class="btn btn-primario"></td>
-                        <td class="cap-primario">Nombre ficticio 1</td>
-                        <td class="cap-primario">Comentario ficticio 1</td>
-                        <td class="cap-primario">NO</td>
-                        <td class="cap-primario"><img src="img/CaraMuyMal.JPG" alt="Cara de muy mala exp. "></td>
-                    </tr>
-                    <tr>
-                        <td class="cap-primario">Titulo 2</td>
-                        <td class="cap-primario"><input id="btnPruebaNro2" type="button" value="Ampliar " class="btn btn-primario"></td>
-                        <td class="cap-primario">Nombre ficticio 2</td>
-                        <td class="cap-primario">Comentario ficticio 2</td>
-                        <td class="cap-primario">SI</td>
-                        <td class="cap-primario"><img src="img/CaraMuyBien.JPG" alt="Cara de muy Buena exp. "></td>
-                    </tr>
+                <table class="table">
+                    <thead>
+                        <tr class="table__head">
+                            <th>Titulo</th>
+                            <th>Más datos</th>
+                            <th>Nombre</th>
+                            <th>Comentario</th>
+                            <th>Guiada</th>
+                            <th><input type="button" value="Calificación creciente" class="btn btn-primario"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="idTablaComentarios">
+                        <tr class="table__tr cap-primario">
+                            <td class="cap-primario table__td" data-titulo="Titulo: ">Titulo 1</td>
+                            <td class="cap-primario table__td" data-titulo="Más datos: "><input type="button"
+                                    value="Ampliar " class="btn btn-primario"></td>
+                            <td class="cap-primario table__td" data-titulo="Nombre: ">Nombre ficticio 1</td>
+                            <td class="cap-primario table__td" data-titulo="Comentario: ">Comentario ficticio 1</td>
+                            <td class="cap-primario table__td" data-titulo="Guiada: ">NO</td>
+                            <td class="cap-primario table__td" data-titulo=""><img src="img/caraMuyMal.JPG"
+                                    alt="Cara de muy mala exp. "></td>
+                        </tr>
+                        <tr class="table__tr cap-primario">
+                            <td class="cap-primario table__td" data-titulo="Titulo: ">Titulo 2</td>
+                            <td class="cap-primario table__td" data-titulo="Más datos: "><input type="button"
+                                    value="Ampliar " class="btn btn-primario"></td>
+                            <td class="cap-primario table__td" data-titulo="Nombre: ">Nombre ficticio 2</td>
+                            <td class="cap-primario table__td" data-titulo="Comentario: ">Comentario ficticio 2</td>
+                            <td class="cap-primario table__td" data-titulo="Guiada: ">SI</td>
+                            <td class="cap-primario table__td" data-titulo=""><img src="img/caraMuyBien.JPG"
+                                    alt="Cara de muy Buena exp. "></td>
+                        </tr>
+                    </tbody>
                 </table>
             </article>
         </section>
     </main>
 
-    <script src="js/Clases.js"></script>
-    <script src="js/Funciones.js"></script>
 </body>
 
 </html>

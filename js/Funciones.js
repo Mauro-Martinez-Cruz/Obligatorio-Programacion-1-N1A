@@ -1,6 +1,85 @@
-/*================== CAMBIO DE COLOR (INICIO) =================*/
+/*================== CARGAR EL DOM (INICIO) =================*/
+window.addEventListener('load', inicio);
+/*================== CARGAR EL DOM (FINAL) =================*/
 
-let bgActual = ["primario", "secundario", "terciario"];
+/*===============================================================*/
+
+/*================== DECLARAR SISTEMA Y INICIAR (INICIO) =================*/
+let sistema = new Sistema();
+
+let radios = ['caraMuyMal', 'caraMal', 'caraNormal', 'caraBien', 'caraMuyBien'];
+let imgCalificacion = "caraMuyBien.JPG";
+
+function inicio() {
+
+    /*\ |*| COLORES |*| \*/
+    let bgActual = ["primario", "secundario", "terciario"];
+    document.getElementById('idBtnCambioColor').onclick = () => {
+        let noColor = true;
+        for (let i = 0; i < bgActual.length && noColor; i++) {
+            let color = document.querySelector(`.col-${bgActual[i]}`);
+            if (color != null) {
+                noColor = false;
+                if (i == (bgActual.length - 1)) {
+                    cambio(bgActual[i], bgActual[0]);
+                } else {
+                    cambio(bgActual[i], bgActual[i + 1]);
+                }
+            }
+        }
+    };
+    /*\ |*| COLORES |*| \*/
+
+    /*\ |*| CALIFICACIONES |*| \*/
+    document.getElementById('caraMuyBien').checked = true;
+
+    for (let x = 0; x < radios.length; x++) {
+        document.getElementById(radios[x]).onclick = () => {
+            check(radios[x], radios);
+        };
+    }
+    /*\ |*| CALIFICACIONES |*| \*/
+
+    /*\ |*| LISTAS DE ARTISTAS |*| \*/
+    let lista1 = document.getElementById('idListaArtistasUno');
+    let lista2 = document.getElementById('idListaArtistasDos');
+
+    document.getElementById('idBtnPaseDerecho').onclick = () => {
+        pasajeArtistasListas(lista1, lista2);
+    };
+
+    document.getElementById('idBtnPaseIzquierdo').onclick = () => {
+        pasajeArtistasListas(lista2, lista1);
+    };
+    /*\ |*| LISTAS DE ARTISTAS |*| \*/
+
+    /*\ |*| REGISTRO ARTISTA |*| \*/
+    document.getElementById('idBtnRegistroArtista').onclick = (event) => {
+        event.preventDefault();
+        registroArtista();
+    }
+    /*\ |*| REGISTRO ARTISTA |*| \*/
+
+    /*\ |*| REGISTRO EXPOSICION |*| \*/
+    document.getElementById('idBtnRegistroExposicion').onclick = (event) => {
+        event.preventDefault();
+        registroExposicion();
+    };
+    /*\ |*| REGISTRO EXPOSICION |*| \*/
+
+    /*\ |*| REGISTRO VISITA |*| \*/
+    document.getElementById('idBtnRegistroVisita').onclick = (event) => {
+        event.preventDefault();
+        registroVisita();
+    };
+    /*\ |*| REGISTRO VISITA |*| \*/
+
+}
+/*================== DECLARAR SISTEMA Y INICIAR (FINAL) =================*/
+
+/*===============================================================*/
+
+/*================== CAMBIO DE COLOR (INICIO) =================*/
 
 function cambio(color, cambio) {
     let btns = document.querySelectorAll(`.btn-${color}`);
@@ -21,57 +100,42 @@ function cambio(color, cambio) {
     });
 }
 
-document.getElementById("btnCambioColor").onclick = () => {
-    let noColor = true;
-    for (let i = 0; i < bgActual.length && noColor; i++) {
-        let color = document.querySelector(`.col-${bgActual[i]}`);
-        if (color != null) {
-            noColor = false;
-            if (i == (bgActual.length - 1)) {
-                cambio(bgActual[i], bgActual[0]);
-            } else {
-                cambio(bgActual[i], bgActual[i + 1]);
-            }
-        }
-    }
-};
-
 /*================== CAMBIO DE COLOR (FINAL) =================*/
 
 /*===============================================================*/
 
 /*================== CREAR MODALES (INICIO) =================*/
 
-function cerrarModalAlerta() {
-    let modal = document.getElementById('modalAlertas');
+function cerrarModal() {
+    let modal = document.getElementById('modal_info');
     window.onclick = event => {
         if (event.target == modal) {
             modal.remove();
         }
     }
 
-    document.querySelector('.cerrar-modal').onclick = () => {
+    document.querySelector('.modal__cerrar').onclick = () => {
         modal.remove();
     };
 }
 
-function modalAlerta(titulo, contenido) {
-    let body = document.getElementById('body');
+function modal(titulo, contenido) {
+    let body = document.getElementById('idBody');
     let modal = document.createElement('div');
-    modal.id = 'modalAlertas';
+    modal.id = 'modal_info';
     modal.classList.add('modal');
     modal.innerHTML = `
-        <div class="contenedor_modal radio shadow">
-            <div class="titulo-modal">
-                <h2 class="titulo-modal-txt">${titulo}</h2>
-                <button class="cerrar-modal shadow">x</button>
+        <div class="modal__container radio shadow">
+            <div class="modal__title">
+                <h2 class="modal__title--texto">${titulo}</h2>
+                <button class="modal__cerrar shadow">x</button>
             </div>
             ${contenido}
 
         </div>
     `;
     body.appendChild(modal);
-    cerrarModalAlerta();
+    cerrarModal();
 }
 
 /*================== CREAR MODALES (FINAL) =================*/
@@ -80,32 +144,23 @@ function modalAlerta(titulo, contenido) {
 
 /*================== CHECK DE CALIFICACIÓN (INICIO) =================*/
 
-let radios = ['califMuyMal', 'califMal', 'califNormal', 'califBien', 'califMuyBien'];
-let imgCalificacion = "CaraMuyBien.JPG";
-
 function check(check, arr) {
     for (let i = 0; i < arr.length; i++) {
         document.getElementById(`${arr[i]}Lbl`).classList.remove('imgCheck');
     }
     document.getElementById(`${check}Lbl`).classList.add('imgCheck');
 
-    if (check == "califMuyBien") {
-        imgCalificacion = "CaraMuyBien.JPG";
-    } else if (check == "califBien") {
-        imgCalificacion = "CaraBien.JPG";
-    } else if (check == "califNormal") {
-        imgCalificacion = "CaraNormal.JPG";
-    } else if (check == "califMal") {
-        imgCalificacion = "CaraMal.JPG";
-    } else if (check == "califMuyMal") {
-        imgCalificacion = "CaraMuyMal.JPG";
+    if (check == "caraMuyBien") {
+        imgCalificacion = "caraMuyBien.JPG";
+    } else if (check == "caraBien") {
+        imgCalificacion = "caraBien.JPG";
+    } else if (check == "caraNormal") {
+        imgCalificacion = "caraNormal.JPG";
+    } else if (check == "caraMal") {
+        imgCalificacion = "caraMal.JPG";
+    } else if (check == "caraMuyMal") {
+        imgCalificacion = "caraMuyMal.JPG";
     }
-}
-
-for (let x = 0; x < radios.length; x++) {
-    document.getElementById(radios[x]).onclick = () => {
-        check(radios[x], radios);
-    };
 }
 
 /*================== CHECK DE CALIFICACIÓN (FINAL) =================*/
@@ -115,8 +170,8 @@ for (let x = 0; x < radios.length; x++) {
 /*================== CARGAR LISTA (INICIO) =================*/
 
 function cargarLista(list) {
-    document.getElementById("lista2").innerHTML = ``;
-    let selectListArtistas = document.getElementById("lista1");
+    document.getElementById('idListaArtistasDos').innerHTML = ``;
+    let selectListArtistas = document.getElementById('idListaArtistasUno');
     selectListArtistas.innerHTML = ``;
     list.forEach(artista => {
         let opt = document.createElement("option");
@@ -131,8 +186,6 @@ function cargarLista(list) {
 /*===============================================================*/
 
 /*================== REGISTRO ARTISTA (INICIO) =================*/
-
-let listArtistas = [];
 
 function validarRegistroArtista(nombre, edad, estilo) {
     let msg = "";
@@ -157,30 +210,25 @@ function validarRegistroArtista(nombre, edad, estilo) {
     }
 
     if (alera) {
-        modalAlerta("¡Advertencia!", msg);
+        modal("¡Advertencia!", msg);
     } else {
         return true;
     }
 }
 
 function registroArtista() {
-    let nombre = document.getElementById('nombreArtista');
-    let edad = document.getElementById('edadArtista');
-    let estilo = document.getElementById('estiloArstista');
+    let nombre = document.getElementById('idNombreArtista');
+    let edad = document.getElementById('idEdadArtista');
+    let estilo = document.getElementById('idEstiloArstista');
     if (validarRegistroArtista(nombre.value, edad.value, estilo.value)) {
         let artista = new Artista(nombre.value, edad.value, estilo.value);
-        listArtistas.push(artista);
+        sistema.addArtista(artista);
 
         nombre.value = "";
         edad.value = "";
         estilo.value = "";
-        cargarLista(listArtistas);
+        cargarLista(sistema.getArtistas());
     }
-}
-
-document.getElementById('btnRegistroArtista').onclick = (event) => {
-    event.preventDefault();
-    registroArtista();
 }
 
 /*================== REGISTRO ARTISTA (FINAL) =================*/
@@ -189,25 +237,25 @@ document.getElementById('btnRegistroArtista').onclick = (event) => {
 
 /*================== LISTAS DE ARTISTAS SELECIONADOS (INICIO) =================*/
 
-let lista1 = document.getElementById('lista1');
-let lista2 = document.getElementById('lista2');
+function pasajeArtistasListas(listaA, listaB, select = true) {
+    const seleccionados = [];
 
-function pasajeArtistasListas(listaA, listaB) {
     for (let i = 0; i < listaA.options.length; i++) {
-        let opt = listaA.options[i];
-        if (opt.selected == true) {
-            listaB.appendChild(opt);
+        const opt = listaA.options[i];
+        if(select){
+            if (opt.selected) {
+                seleccionados.push(opt);
+            }
+        }else{
+            seleccionados.push(opt)
         }
     }
+
+    for (let i = 0; i < seleccionados.length; i++) {
+        listaB.appendChild(seleccionados[i]);
+        seleccionados[i].selected = false;
+    }
 }
-
-document.getElementById('btnPaseDerecho').onclick = () => {
-    pasajeArtistasListas(lista1, lista2);
-};
-
-document.getElementById('btnPaseIzquierdo').onclick = () => {
-    pasajeArtistasListas(lista2, lista1);
-};
 
 /*================== LISTAS DE ARTISTAS SELECIONADOS (FINAL) =================*/
 
@@ -217,10 +265,10 @@ document.getElementById('btnPaseIzquierdo').onclick = () => {
 
 function recorrerListaArtistasSelecionados() {
     let arrArtistas = [];
-    let select = document.getElementById('lista2');
+    let select = document.getElementById('idListaArtistasDos');
     // RECORRE LOS OPTION EN EL SELECT MIENTRA LOS COMPARA CON LOS ARTISTAS EN EL AREGLO "listArtistas" (INICIO)
     for (let i = 0; i < select.options.length; i++) {
-        listArtistas.forEach(artista => {
+        sistema.getArtistas().forEach(artista => {
             if (artista.getNombre() == select.options[i].value) {
                 arrArtistas.push(artista);
             }
@@ -235,8 +283,6 @@ function recorrerListaArtistasSelecionados() {
 /*===============================================================*/
 
 /*================== REGISTRO EXPOSICIÓN (INICIO) =================*/
-
-let listExposiciones = [];
 
 function validarRegistroExposicion(titulo, fecha, descripcion, artistas) {
     let msg = "";
@@ -259,78 +305,213 @@ function validarRegistroExposicion(titulo, fecha, descripcion, artistas) {
     }
 
     if (alera) {
-        modalAlerta("¡Advertencia!", msg);
+        modal("¡Advertencia!", msg);
     } else {
         return true;
     }
 }
 
 function registroExposicion() {
-    let titulo = document.getElementById('formTitl');
-    let fecha = document.getElementById('fecha');
-    let descripcion = document.getElementById('descrip');
+    let titulo = document.getElementById('idExpoTitulo');
+    let fecha = document.getElementById('idExpoFecha');
+    let descripcion = document.getElementById('idExpoDescripcion');
     let arrArtistas = recorrerListaArtistasSelecionados();
+    let lista1 = document.getElementById('idListaArtistasUno');
+    let lista2 = document.getElementById('idListaArtistasDos');
     if (validarRegistroExposicion(titulo.value, fecha.value, descripcion.value, arrArtistas)) {
         let exposicion = new Exposicion(titulo.value, fecha.value, descripcion.value, arrArtistas);
-        listExposiciones.push(exposicion);
+        sistema.addExposicion(exposicion);
+        exposicionesEnVisitas();
 
         titulo.value = "";
         fecha.value = "";
         descripcion.value = "";
-        for (let i = 0; i < lista2.options.length; i++) {
-            let opt = lista2.options[i];
-            lista1.appendChild(opt);
-        }
+        pasajeArtistasListas(lista2, lista1, false);
     }
 }
-
-document.getElementById('btnRegistroExposicion').onclick = (event) => {
-    event.preventDefault();
-    registroExposicion();
-};
 
 /*================== REGISTRO EXPOSICIÓN (FINAL) =================*/
 
 /*===============================================================*/
 
-/*================== INFORMACIÓN DE EXPOSICIÓN (INICIO) =================*/
-let comentarios = 2;
+/*================== EXPOSICIÓN EN VISITAS (INICIO) =================*/
 
-for (let i = 1; i <= comentarios; i++) {
-    document.getElementById(`btnPruebaNro${i}`).onclick = () => {
-        let msg = `
-            <p><span class="des-expo">Fecha: </span>10/03/2024</p>
-            <p><span class="des-expo">Descripción: </span>Emociones humanas con uso del color</p>
-            <p><span class="des-expo">Artistas:</span></p>
-            <table class="tableExposicion">
-                <thead>
-                    <tr>
-                        <td class="tab-head">Nombre</td>
-                        <td class="tab-head">Edad</td>
-                        <td class="tab-head">Estilo</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="br-none">Camila Gonzalez</td>
-                        <td class="br-none">27</td>
-                        <td class="br-none">Abstracto</td>
-                    </tr>
-                    <tr>
-                        <td class="br-none">Mateo Ruiz</td>
-                        <td class="br-none">34</td>
-                        <td class="br-none">Impresionismo</td>
-                    </tr>
-                    <tr>
-                        <td class="br-none">Sofia Valenzuela</td>
-                        <td class="br-none">29</td>
-                        <td class="br-none">Realizmo</td>
-                    </tr>
-                </tbody>
-            </table>
+function optionExposicion(exposicion){
+    let option = document.createElement('OPTION');
+    option.textContent = exposicion.getTitulo();
+    option.value = sistema.getExposiciones().indexOf(exposicion);
+    return option;
+}
+
+function exposicionesEnVisitas() {
+    let exposiciones = document.getElementById('idVisitaExpo');
+    let expoTabla = document.getElementById('idExpisicionesTabla');
+    
+    exposiciones.innerHTML = '';
+    expoTabla.innerHTML = '';
+
+    sistema.getExposiciones().forEach(exposicion => {
+        exposiciones.appendChild(optionExposicion(exposicion));
+        expoTabla.appendChild(optionExposicion(exposicion));
+    });
+}
+
+/*================== EXPOSICIÓN EN VISITAS (FINAL) =================*/
+
+/*===============================================================*/
+
+/*================== REGISTRO VISITAS (INICIO) =================*/
+
+function validarRegistroVisitas(exposicion, nombre, comentario, calificacion) {
+    let msg = "";
+    let alera = false;
+    if (exposicion == "") {
+        msg += `<p class="alerta">Debe elegir una exposición</p>`;
+        alera = true;
+    }
+    if (nombre == "") {
+        msg += `<p class="alerta">El nombre es obligatorio</p>`;
+        alera = true;
+    }
+    if (comentario == "") {
+        msg += `<p class="alerta">Debe comentar algo</p>`;
+        alera = true;
+    }
+
+    if (alera) {
+        modal("¡Advertencia!", msg);
+    } else {
+        return true;
+    }
+}
+
+function registroVisita() {
+    let exposicion = document.getElementById('idVisitaExpo');
+    let nombre = document.getElementById('idVisitaNombre');
+    let comentario = document.getElementById('idVisitaComentario');
+    let calificaciones = document.querySelectorAll("[name='calif']");
+    let visitaGuiada = document.getElementById('idVisitaGuiada');
+    let guiada = 'NO';
+    let calificacion = '';
+
+    calificaciones.forEach(cal => {
+        if (cal.checked) {
+            calificacion = `${cal.id}`;
+        }
+    });
+
+    if (visitaGuiada.checked) { guiada = 'SI'; }
+
+    if (validarRegistroVisitas(exposicion.value, nombre.value, comentario.value)) {
+        let visita = new Visita(sistema.getExposiciones()[exposicion.value], nombre.value, comentario.value, calificacion, guiada);
+        sistema.addVisita(visita);
+        agregarComentario();
+
+        nombre.value = "";
+        comentario.value = "";
+        visitaGuiada.checked = false;
+        check("caraMuyBien", radios);
+    }
+}
+
+/*================== REGISTRO VISITAS (FINAL) =================*/
+
+/*===============================================================*/
+
+/*================== COMENTARIOS EN TABLA (INICIO) =================*/
+
+function agregarComentario() {
+    let body = document.getElementById('idTablaComentarios');
+    body.innerHTML = '';
+
+    sistema.getVisitas().forEach(visita => {
+        let tr = document.createElement('TR');
+        tr.classList.add('table_tr', 'cap-primario');
+        tr.innerHTML = `
+            <td class="cap-primario table__td" data-titulo="Titulo: ">${visita.getExposicion().getTitulo()}</td>
+            <td class="cap-primario table__td" data-titulo="Más datos: ">
+                <input data-expo="${sistema.getVisitas().indexOf(visita)}" type="button" value="Ampliar" class="table__btn__ampliar btn btn-primario">
+            </td>
+            <td class="cap-primario table__td" data-titulo="Nombre: ">${visita.getNombre()}</td>
+            <td class="cap-primario table__td" data-titulo="Comentario: ">${visita.getComentario()}</td>
+            <td class="cap-primario table__td" data-titulo="Guiada: ">${visita.getGuiada()}</td>
+            <td class="cap-primario table__td" data-titulo="">
+                <img src="img/${visita.getCalificacion()}.JPG" alt="${visita.getCalificacion()}">
+            </td>
         `;
-        modalAlerta('Información de la Exposición', msg);
-    };
+
+        body.appendChild(tr);
+        ampliarInformacionObras();
+    });
+}
+
+/*================== COMENTARIOS EN TABLA (FINAL) =================*/
+
+/*===============================================================*/
+
+/*================== FORMATEAR LA FECHA (INICIO) =================*/
+
+function formatoFecha(fecha) {
+    let date = new Date(fecha);
+    let dia = date.getDate(); 
+    let mes = date.getMonth() + 1;
+    let año = date.getFullYear();
+
+    dia = (dia < 10) ? '0' + dia : dia; // ES UN IF DE UNA LINEA "(CONDICION)" "?" -> SI PASA LA CONDICIÓN ":" -> SINO
+    mes = (mes < 10) ? '0' + mes : mes;
+    return dia + '/' + mes + '/' + año;
+}
+
+/*================== FORMATEAR LA FECHA (FINAL) =================*/
+
+/*===============================================================*/
+
+/*================== INFORMACIÓN DE EXPOSICIÓN (INICIO) =================*/
+
+function ampliarInformacionObras() {
+        let btnsAmpliar = document.querySelectorAll('.table__btn__ampliar')
+        btnsAmpliar.forEach(btn => {
+            btn.onclick = () => {
+                let index = btn.dataset.expo;
+                let exposicion = sistema.getVisitas()[index].getExposicion();
+                let msg = `
+                    <p class="modal__texto"><span class="modal__texto--span">Fecha: </span>${formatoFecha(exposicion.getFecha())}</p>
+                    <p class="modal__texto"><span class="modal__texto--span">Descripción: </span>${exposicion.getDescripcion()}</p>
+                    <p class="modal__texto"><span class="modal__texto--span">Artistas:</span></p>
+                `;
+                msg += tablaArtistasExpocision(exposicion);
+                modal('Información de la Exposición', msg);
+            };
+        });
+}
+
+function tablaArtistasExpocision(exposicion) {
+    let msg = `
+        <table class="table-expo">
+            <thead>
+                <tr class="table-expo__head">
+                    <th class="table-expo__th">Nombre</th>
+                    <th class="table-expo__th">Edad</th>
+                    <th class="table-expo__th">Estilo</th>
+                </tr>
+            </thead>
+            <tbody>
+    `;
+    exposicion.getArtistas().forEach(artista => {
+        msg += `
+            <tr class="table-expo__tr">
+                <td class="table-expo__td">${artista.getNombre()}</td>
+                <td class="table-expo__td">${artista.getEdad()}</td>
+                <td class="table-expo__td">${artista.getCaracteristicasEstilo()}</td>
+            </tr>
+        `;
+    });
+
+    msg += `
+            </tbody>
+        </table>
+    `;
+    return msg;
 }
 
 /*================== INFORMACIÓN DE EXPOSICIÓN (FINAL) =================*/
