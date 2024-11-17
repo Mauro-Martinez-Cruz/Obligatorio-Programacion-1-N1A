@@ -74,6 +74,32 @@ function inicio() {
     };
     /*\ |*| REGISTRO VISITA |*| \*/
 
+    /*\ |*| SELECCIONAR OBRA TABLA |*| \*/
+    document.getElementById('idExpisicionesTabla').addEventListener('change', (e)=> {
+        if(sistema.getVisitas().length != 0){
+            let visitas = visitasSelecionadasTabla(e.target.value);
+            ordenarCalificaciones(visitas);
+        }
+    });
+    /*\ |*| SELECCIONAR OBRA TABLA |*| \*/
+
+    /*\ |*| ORDEN CALIFICACION |*| \*/
+    document.getElementById('idBtnOrdenCalificacion').onclick = (e)=>{
+        if(sistema.getVisitas().length != 0){
+            let visita = document.getElementById('idExpisicionesTabla').value;
+            let visitas = visitasSelecionadasTabla(visita);
+
+            if(e.target.value == 'Calificación creciente'){
+                ordenarCalificaciones(visitas);
+                e.target.value = 'Calificación decreciente';
+            }else{
+                ordenarCalificaciones(visitas, "DECRECIENTE");
+                e.target.value = 'Calificación creciente';
+            }
+        }
+    };
+    /*\ |*| ORDEN CALIFICACION |*| \*/
+
 }
 /*================== DECLARAR SISTEMA Y INICIAR (FINAL) =================*/
 
@@ -348,7 +374,9 @@ function exposicionesEnVisitas() {
     let expoTabla = document.getElementById('idExpisicionesTabla');
     
     exposiciones.innerHTML = '';
-    expoTabla.innerHTML = '';
+    expoTabla.innerHTML = `
+        <option value="all">Todas</option>
+    `;
 
     sistema.getExposiciones().forEach(exposicion => {
         exposiciones.appendChild(optionExposicion(exposicion));
@@ -420,17 +448,17 @@ function registroVisita() {
 
 /*================== COMENTARIOS EN TABLA (INICIO) =================*/
 
-function agregarComentario() {
+function agregarComentario(orden = sistema.getVisitas()){
     let body = document.getElementById('idTablaComentarios');
     body.innerHTML = '';
 
-    sistema.getVisitas().forEach(visita => {
+    orden.forEach(visita => {
         let tr = document.createElement('TR');
         tr.classList.add('table_tr', 'cap-primario');
         tr.innerHTML = `
             <td class="cap-primario table__td" data-titulo="Titulo: ">${visita.getExposicion().getTitulo()}</td>
             <td class="cap-primario table__td" data-titulo="Más datos: ">
-                <input data-expo="${sistema.getVisitas().indexOf(visita)}" type="button" value="Ampliar" class="table__btn__ampliar btn btn-primario">
+                <input data-expo="${orden.indexOf(visita)}" type="button" value="Ampliar" class="table__btn__ampliar btn btn-primario">
             </td>
             <td class="cap-primario table__td" data-titulo="Nombre: ">${visita.getNombre()}</td>
             <td class="cap-primario table__td" data-titulo="Comentario: ">${visita.getComentario()}</td>
@@ -515,4 +543,45 @@ function tablaArtistasExpocision(exposicion) {
 }
 
 /*================== INFORMACIÓN DE EXPOSICIÓN (FINAL) =================*/
+
+/*===============================================================*/
+
+/*================== ORDEN CALIDICACIONES (INICIO) =================*/
+
+function ordenarCalificaciones(visitas, direccion = 'CRECIENTE') {
+    const orden = ['caraMuyMal', 'caraMal', 'caraNormal', 'caraBien', 'caraMuyBien'];
+    let retorno = [];
+
+    if(direccion == 'CRECIENTE'){
+       retorno = visitas.sort((a, b) => orden.indexOf(a.calificacion) - orden.indexOf(b.calificacion));
+    }else{
+       retorno = visitas.sort((a, b) => orden.indexOf(b.calificacion) - orden.indexOf(a.calificacion));
+    }
+    agregarComentario(retorno);
+}
+
+/*================== ORDEN CALIDICACIONES (FINAL) =================*/
+
+/*===============================================================*/
+
+/*================== SOLO VISITAS SELECIONADAS (INICIO) =================*/
+
+function visitasSelecionadasTabla(seleccionadas) {
+    let select = [];
+
+    if(seleccionadas == "all"){
+        select = sistema.getVisitas();
+    }else{
+        console.log(sistema.getExposiciones()[seleccionadas]);
+        sistema.getVisitas().forEach(visita => {
+            if(visita.getExposicion() == sistema.getExposiciones()[seleccionadas]){
+                select.push(visita);
+            }
+        });
+    }
+
+    return select;
+}
+
+/*================== SOLO VISITAS SELECIONADAS (FINAL) =================*/
 

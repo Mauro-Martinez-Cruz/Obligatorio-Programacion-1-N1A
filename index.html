@@ -32,7 +32,7 @@
             </a>
             y
             <a class="header__link" href="https://blackwolf-dev-portfolio.netlify.app/" target=_blank>
-                <img src="img/m.perfil.webp" class="header__link__perfil">
+                <img src="img/m.perfil.png" class="header__link__perfil">
                 Mauro Martínez
                 <span>331344</span>
             </a>
@@ -74,9 +74,6 @@
                         <div class="seccion__campo__listas">
                             <select class="seccion__campo__listas--uno" id="idListaArtistasUno" multiple>
                                 <!-- OPTIONS CON JAVASCRIPT -->
-                                <option value="">Nombre 1</option>
-                                <option value="">Nombre 2</option>
-                                <option value="">Nombre 3</option>
                             </select>
                             <div class="seccion__campo__listas--btn">
                                 <input type="button" id="idBtnPaseDerecho" value=">>">
@@ -84,8 +81,6 @@
                             </div>
                             <select class="seccion__campo__listas--dos" id="idListaArtistasDos" multiple>
                                 <!-- OPTIONS CON JAVASCRIPT -->
-                                <option value="">Nombre 4</option>
-                                <option value="">Nombre 5</option>
                             </select>
                         </div>
                         <input id="idBtnRegistroExposicion" type="button" value="Agregar Exposición"
@@ -98,7 +93,7 @@
                         <h3 class="seccion__campo__title">Comentarios de Visitas</h3>
                         <label class="seccion__campo__label" for="idVisitaExpo">Exposición:</label>
                         <select class="seccion__campo__select" id="idVisitaExpo" class="selectTitulo">
-                            <option value="">Titulo 1</option>
+                            <!-- OPTIONS CON JAVASCRIPT -->
                         </select>
                         <label class="seccion__campo__label" for="idVisitaNombre">Nombre del visitante:</label>
                         <input class="seccion__campo__datos" type="text" required id="idVisitaNombre" value="">
@@ -173,7 +168,7 @@
                 <div class="seccion__articulo__select">
                     <label for="expo">Exposición:</label>
                     <select id="idExpisicionesTabla" class="selectExpocioxiones-select">
-                        <option value="">Todas</option>
+                        <!-- OPTIONS CON JAVASCRIPT -->
                     </select>
                 </div>
 
@@ -185,30 +180,11 @@
                             <th>Nombre</th>
                             <th>Comentario</th>
                             <th>Guiada</th>
-                            <th><input type="button" value="Calificación creciente" class="btn btn-primario"></th>
+                            <th><input id="idBtnOrdenCalificacion" type="button" value="Calificación creciente" class="btn btn-primario"></th>
                         </tr>
                     </thead>
                     <tbody id="idTablaComentarios">
-                        <tr class="table__tr cap-primario">
-                            <td class="cap-primario table__td" data-titulo="Titulo: ">Titulo 1</td>
-                            <td class="cap-primario table__td" data-titulo="Más datos: "><input type="button"
-                                    value="Ampliar " class="btn btn-primario"></td>
-                            <td class="cap-primario table__td" data-titulo="Nombre: ">Nombre ficticio 1</td>
-                            <td class="cap-primario table__td" data-titulo="Comentario: ">Comentario ficticio 1</td>
-                            <td class="cap-primario table__td" data-titulo="Guiada: ">NO</td>
-                            <td class="cap-primario table__td" data-titulo=""><img src="img/caraMuyMal.JPG"
-                                    alt="Cara de muy mala exp. "></td>
-                        </tr>
-                        <tr class="table__tr cap-primario">
-                            <td class="cap-primario table__td" data-titulo="Titulo: ">Titulo 2</td>
-                            <td class="cap-primario table__td" data-titulo="Más datos: "><input type="button"
-                                    value="Ampliar " class="btn btn-primario"></td>
-                            <td class="cap-primario table__td" data-titulo="Nombre: ">Nombre ficticio 2</td>
-                            <td class="cap-primario table__td" data-titulo="Comentario: ">Comentario ficticio 2</td>
-                            <td class="cap-primario table__td" data-titulo="Guiada: ">SI</td>
-                            <td class="cap-primario table__td" data-titulo=""><img src="img/caraMuyBien.JPG"
-                                    alt="Cara de muy Buena exp. "></td>
-                        </tr>
+                        <!-- TR CON JAVASCRIPT -->
                     </tbody>
                 </table>
             </article>
