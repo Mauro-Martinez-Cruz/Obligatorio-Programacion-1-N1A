@@ -595,11 +595,14 @@ li {
 
 .table__head th input, .table__td input{
     margin: 10px auto;
+    width: max-content;
 }
 
 .table__td, .table-expo__td{
     text-align: center;
     padding: 5px 10px;
+    height: max-content;
+    max-height: 10px;
     border-bottom: 1px solid black;
 }
 

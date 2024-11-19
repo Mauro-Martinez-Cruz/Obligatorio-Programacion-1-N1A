@@ -302,6 +302,7 @@ function pasajeArtistasListas(listaA, listaB, select = true) {
 function recorrerListaArtistasSelecionados() {
     let arrArtistas = [];
     let select = document.getElementById('idListaArtistasDos');
+    let selectUno = document.getElementById('idListaArtistasUno');
     // RECORRE LOS OPTION EN EL SELECT MIENTRA LOS COMPARA CON LOS ARTISTAS EN EL AREGLO "listArtistas" (INICIO)
     for (let i = 0; i < select.options.length; i++) {
         sistema.getArtistas().forEach(artista => {
@@ -311,6 +312,16 @@ function recorrerListaArtistasSelecionados() {
         });
     }
     // RECORRE LOS OPTION EN EL SELECT MIENTRA LOS COMPARA CON LOS ARTISTAS EN EL AREGLO "listArtistas" (FINAL)
+
+    if(arrArtistas.length == 0){
+        for(let i = 0; i < selectUno.length; i++){
+            sistema.getArtistas().forEach(artista => {
+                if (selectUno.options[i].selected == true && artista.getNombre() == selectUno.options[i].value) {
+                    arrArtistas.push(artista);
+                }
+            });
+        }
+    }
     return arrArtistas;
 }
 
@@ -387,7 +398,7 @@ function exposicionesEnVisitas() {
 
     exposiciones.innerHTML = '';
     expoTabla.innerHTML = `
-        <option value="all">Todas</option>
+        <option value="all" selected>Todas</option>
     `;
 
     sistema.getExposiciones().forEach(exposicion => {
@@ -445,13 +456,14 @@ function registroVisita() {
     if (validarRegistroVisitas(exposicion.value, nombre.value, comentario.value)) {
         let visita = new Visita(sistema.getExposiciones()[exposicion.value], nombre.value, comentario.value, calificacion, guiada);
         sistema.addVisita(visita);
-        agregarComentario();
+        ordenarCalificaciones(sistema.getVisitas());
         cargarListaExposicionesSinComentarios(exposicionesSinComentarios());
 
         nombre.value = "";
         comentario.value = "";
         visitaGuiada.checked = false;
         check("caraMuyBien", radios);
+        document.getElementById('caraMuyBien').checked = true;
     }
 }
 
