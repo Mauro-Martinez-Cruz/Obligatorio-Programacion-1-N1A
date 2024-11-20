@@ -229,6 +229,13 @@ function validarRegistroArtista(nombre, edad, estilo) {
     if (nombre == "") {
         msg += `<p class="alerta">El nombre es obligatorio</p>`;
         alera = true;
+    } else if (sistema.getArtistas().length > 0) {
+        sistema.getArtistas().forEach(artista => {
+            if (artista.getNombre().toUpperCase() == nombre.toUpperCase()) {
+                msg += `<p class="alerta">El nombre debe ser único</p>`;
+                alera = true;
+            }
+        });
     }
     if (edad == "") {
         msg += `<p class="alerta">La edad es obligatoria</p>`;
@@ -303,7 +310,7 @@ function recorrerListaArtistasSelecionados() {
     let arrArtistas = [];
     let select = document.getElementById('idListaArtistasDos');
     let selectUno = document.getElementById('idListaArtistasUno');
-    // RECORRE LOS OPTION EN EL SELECT MIENTRA LOS COMPARA CON LOS ARTISTAS EN EL AREGLO "listArtistas" (INICIO)
+
     for (let i = 0; i < select.options.length; i++) {
         sistema.getArtistas().forEach(artista => {
             if (artista.getNombre() == select.options[i].value) {
@@ -311,17 +318,15 @@ function recorrerListaArtistasSelecionados() {
             }
         });
     }
-    // RECORRE LOS OPTION EN EL SELECT MIENTRA LOS COMPARA CON LOS ARTISTAS EN EL AREGLO "listArtistas" (FINAL)
 
-    if(arrArtistas.length == 0){
-        for(let i = 0; i < selectUno.length; i++){
-            sistema.getArtistas().forEach(artista => {
-                if (selectUno.options[i].selected == true && artista.getNombre() == selectUno.options[i].value) {
-                    arrArtistas.push(artista);
-                }
-            });
-        }
+    for (let i = 0; i < selectUno.length; i++) {
+        sistema.getArtistas().forEach(artista => {
+            if (selectUno.options[i].selected == true && artista.getNombre() == selectUno.options[i].value) {
+                arrArtistas.push(artista);
+            }
+        });
     }
+
     return arrArtistas;
 }
 
@@ -337,6 +342,13 @@ function validarRegistroExposicion(titulo, fecha, descripcion, artistas) {
     if (titulo == "") {
         msg += `<p class="alerta">El titulo es obligatorio</p>`;
         alera = true;
+    } else if (sistema.getExposiciones().length > 0) {
+        sistema.getExposiciones().forEach(exposicion => {
+            if (exposicion.getTitulo().toUpperCase() == titulo.toUpperCase()) {
+                msg += `<p class="alerta">El titulo debe ser único</p>`;
+                alera = true;
+            }
+        });
     }
     if (fecha == "") {
         msg += `<p class="alerta">La fecha es obligatoria</p>`;
