@@ -425,7 +425,7 @@ function exposicionesEnVisitas() {
 
 /*================== REGISTRO VISITAS (INICIO) =================*/
 
-function validarRegistroVisitas(exposicion, nombre, comentario, calificacion) {
+function validarRegistroVisitas(exposicion, nombre, comentario) {
     let msg = "";
     let alera = false;
     if (exposicion == "") {
@@ -534,7 +534,7 @@ function formatoFecha(fecha) {
 /*================== INFORMACIÓN DE EXPOSICIÓN (INICIO) =================*/
 
 function ampliarInformacionObras() {
-    let btnsAmpliar = document.querySelectorAll('.table__btn__ampliar')
+    let btnsAmpliar = document.querySelectorAll('.table__btn__ampliar');
     btnsAmpliar.forEach(btn => {
         btn.onclick = () => {
             let index = btn.dataset.expo;
@@ -609,7 +609,6 @@ function visitasSelecionadasTabla(seleccionadas) {
     if (seleccionadas == "all") {
         select = sistema.getVisitas();
     } else {
-        console.log(sistema.getExposiciones()[seleccionadas]);
         sistema.getVisitas().forEach(visita => {
             if (visita.getExposicion() == sistema.getExposiciones()[seleccionadas]) {
                 select.push(visita);
